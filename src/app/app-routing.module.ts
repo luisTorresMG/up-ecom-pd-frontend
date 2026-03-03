@@ -6,7 +6,13 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./inicio/inicio.module').then((m) => m.InicioModule),
-  }, 
+  },  
+  // {
+  //   path: 'extranet',
+  //   loadChildren: () =>
+  //     import('./layout/broker/broker.module').then((m) => m.BrokerModule),
+  //   canActivate: [RedirectLoginGuard],
+  // }, 
   {
     path: '**',
     redirectTo: ''

@@ -1,17 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { appConfig } from '../../../../app.config';
+import { appConfig } from '../../../../../app.config';
 import { AppConfigService } from '~core/services/appConfigService.service';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service'
 import { RecaptchaComponent } from 'ng-recaptcha';
-import { environment } from '../../../../../environments/environment';
-import { SidebarService } from '../../../../shared/services/sidebar/sidebar.service';
+import { environment } from '../../../../../../environments/environment';
+import { SidebarService } from '../../../../../shared/services/sidebar/sidebar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { switchMap } from 'rxjs/operators';
-import { sortArray } from '../../../../shared/helpers/utils';
+import { sortArray } from '../../../../../shared/helpers/utils';
 import { ProductByUserRQ } from '../../models/product/panel/Request/ProductByUserRQ';
 import { ProductService } from '../../services/product/panel/product.service';
+
 //new imports
 import { inject } from '@angular/core';
 

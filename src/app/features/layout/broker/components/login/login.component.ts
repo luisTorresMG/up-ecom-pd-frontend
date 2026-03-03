@@ -1,21 +1,21 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ClientInformationService } from '../../../layout/broker/services/shared/client-information.service';
+import { ClientInformationService } from '../../services/shared/client-information.service';
 import { RecaptchaComponent } from 'ng-recaptcha';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../../environments/environment';
 import { SidebarService } from '~shared/services/sidebar/sidebar.service';
-import { ProductService } from '../../../layout/broker/services/panel/product.service';
-import { ProductByUserRQ } from '../../../layout/broker/models/product/panel/Request/ProductByUserRQ';
+import { ProductService } from '../../services/product/panel/product.service';
+import { ProductByUserRQ } from '../../models/product/panel/Request/ProductByUserRQ';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { sortArray } from '~shared/helpers/utils';
 import { SessionStorageService } from '~shared/services/storage/storage-service';
-import { PasswordService } from '../../../layout/broker/services/password/password.service';
- import { SecurityCookieService } from '../../../layout/broker/services/cookie/SecurityCookie.service';
+import { PasswordService } from '../../services/password/password.service';
+ import { SecurityCookieService } from '../../services/cookie/SecurityCookie.service';
 //new imports
 import { inject } from '@angular/core';
 import { AppConfigService } from '~core/services/appConfigService.service';
-import { AuthenticationService } from '../../../layout/broker/services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
