@@ -11,7 +11,7 @@ import { FooterComponent } from '~shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-inicio',
-  imports: [NewMenuLandingComponent,FooterComponent],
+  standalone: false,
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,6 +6,7 @@ import { isNullOrUndefined } from '~shared/helpers/null-check.helper';
 import { environment } from './../../../../environments/environment';
 @Component({
   selector: 'app-new-menu-landing',
+  standalone: false,
   templateUrl: './new-menu-landing.component.html',
   styleUrls: ['./new-menu-landing.component.css']
 })

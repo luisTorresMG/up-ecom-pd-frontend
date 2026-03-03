@@ -1,22 +1,16 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { appConfig } from './app/app.config';
-import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
-//new imports
-import { ReactiveFormsModule } from '@angular/forms';
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/');
+// import { bootstrapApplication } from '@angular/platform-browser';
+// import { AppComponent } from './app/app.component';
+// import { appConfig } from './app/app.config';
+// import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+import { environment } from './environments/environment';
+import { enableProdMode, ApplicationRef } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
+// setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/');
 
-bootstrapApplication(AppComponent,
-  //  appConfig
-  {
-  providers: [
-    { provide: ReactiveFormsModule, 
-      useClass: ReactiveFormsModule },
-    ...appConfig.providers
-  ]
+if (environment.production) {
+  enableProdMode();
 }
-)
-.catch((error) => {
-  // eslint-disable-next-line no-console
-  console.error(error);
-});
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
+

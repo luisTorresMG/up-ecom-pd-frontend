@@ -1,65 +1,64 @@
-import {afterNextRender,ChangeDetectionStrategy,Component,effect,inject,PLATFORM_ID,
-} from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-// import { HeaderComponent } from '~shared/components/header/header.component';
-import { FooterComponent } from '~shared/components/footer/footer.component';
-import { filter, map } from 'rxjs';
-import { HeaderService } from '~core/services/ui/header.service';
-import { CookiePopupComponent } from '~shared/components/cookie-popup/cookie-popup.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ToastStackComponent } from '~shared/components/toast-stack/toast-stack.component';
-import { AnalyticsService } from '~core/services/analytics.service';
-import { isPlatformBrowser } from '@angular/common';
-import { SeoService } from '~core/services/seo.service';
-//new imports
-import { ReactiveFormsModule } from '@angular/forms'; 
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { FormGroup, FormControl } from '@angular/forms';  // Importar FormGroup y FormControl
+import { environment } from './../environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
-
+import { VersionCheckService } from '~shared/services/check-service/version-check.service';
+import { ScreenSplashService } from '~shared/services/screen-splash/screen-splash.service';
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    // HeaderComponent,
-    // FooterComponent,
-    CookiePopupComponent,
-    // ToastStackComponent,
-    ReactiveFormsModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-root',
+    standalone: false,
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    habilitarChat = false;
+    showScreenSplash = false;
+    messageScreenSplash = '';
 
+    constructor(
+        private readonly router: Router,
+        private versionCheckService: VersionCheckService,
+        private readonly screenSplash: ScreenSplashService
+    ) { }
 
-  private readonly router = inject(Router);
-  private readonly headerService = inject(HeaderService);
-  private readonly seoService = inject(SeoService);
-  private readonly analyticsService = inject(AnalyticsService);
-  private readonly platformId = inject(PLATFORM_ID);
+    ngOnInit(): void {
+        console.log('start');
+        (window as any)['global'] = window;
+        this.versionCheckService.initVersionCheck(
+            environment.versioncheckurl,
+            1500000
+        );
 
-  readonly isBrowser = isPlatformBrowser(this.platformId);
-  readonly currentUrl = toSignal(
-    this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((event) => event.urlAfterRedirects),
-    ),
-    { initialValue: this.router.url },
-  );
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.enableChat();
+            }
+        });
 
-  constructor() {
-    this.seoService.setBasicTags();
-    effect(() => {
-      const url = this.currentUrl();
-      this.headerService.setCanonical(url);
-    });
-    if (this.isBrowser) {
-      afterNextRender(() => {
-        this.analyticsService.loadGA4Script();
-      });
+        this.screenSplash.showSubject.subscribe(
+            (show: boolean) => (this.showScreenSplash = show)
+        );
+
+        this.screenSplash.messageSubject.subscribe(
+            (message: string) => (this.messageScreenSplash = message)
+        );
     }
-  }
+
+    enableChat() {
+        this.habilitarChat = true;
+        const url = window.location.pathname;
+
+        if (url.indexOf('/extranet') > -1 || url.indexOf('/siniestrosoat') > -1) {
+            this.habilitarChat = false;
+        }
+
+        const scriptId = 'genesys-bootstrap';
+
+        if (document.getElementById(scriptId)) {
+            this.habilitarChat = false;
+        }
+        sessionStorage.setItem('enableSubscription', 'true');
+        sessionStorage.setItem('enableSubscriptionVL', 'false');
+   }
 }
