@@ -10,7 +10,8 @@ bootstrapApplication(AppComponent,
   //  appConfig
   {
   providers: [
-    { provide: ReactiveFormsModule, useClass: ReactiveFormsModule }, // Asegura que ReactiveFormsModule esté disponible globalmente
+    { provide: ReactiveFormsModule, 
+      useClass: ReactiveFormsModule },
     ...appConfig.providers
   ]
 }

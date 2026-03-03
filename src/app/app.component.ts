@@ -12,8 +12,9 @@ import { AnalyticsService } from '~core/services/analytics.service';
 import { isPlatformBrowser } from '@angular/common';
 import { SeoService } from '~core/services/seo.service';
 //new imports
-import { ReactiveFormsModule } from '@angular/forms'; // Asegúrate de importar ReactiveFormsModule aquí
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; // No olvides esta importación para iniciar tu aplicación
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { FormGroup, FormControl } from '@angular/forms';  // Importar FormGroup y FormControl
 
 
 
@@ -32,6 +33,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; // N
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+
+
   private readonly router = inject(Router);
   private readonly headerService = inject(HeaderService);
   private readonly seoService = inject(SeoService);
