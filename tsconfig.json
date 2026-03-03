@@ -20,7 +20,7 @@
     "noUnusedLocals": false,
     "exactOptionalPropertyTypes": false,
     "useDefineForClassFields": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
