@@ -1,5 +1,5 @@
 
-import { Channel } from '../client-information/channel';
+import { Channel } from './channel';
 
 export class Tariff {
     public protectaTariff: PSTariff;

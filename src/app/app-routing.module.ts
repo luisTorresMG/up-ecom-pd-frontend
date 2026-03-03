@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RedirectLoginGuard } from '~shared/guards/redirect-login.guard';
 
 const routes: Routes = [
   {
@@ -7,12 +8,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./inicio/inicio.module').then((m) => m.InicioModule),
   },  
-  // {
-  //   path: 'extranet',
-  //   loadChildren: () =>
-  //     import('./layout/broker/broker.module').then((m) => m.BrokerModule),
-  //   canActivate: [RedirectLoginGuard],
-  // }, 
+  {
+    path: 'extranet',
+    loadChildren: () =>
+      // import('./layout/broker/broker.module').then((m) => m.BrokerModule),
+    import('./layout/broker/broker.module').then((m) => m.BrokerModule),
+    canActivate: [RedirectLoginGuard],
+  }, 
   {
     path: '**',
     redirectTo: ''

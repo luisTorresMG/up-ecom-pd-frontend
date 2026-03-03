@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientInformationService } from '../../services/shared/client-information.service';
 import { RecaptchaComponent } from 'ng-recaptcha';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { SidebarService } from '~shared/services/sidebar/sidebar.service';
 import { ProductService } from '../../services/product/panel/product.service';
 import { ProductByUserRQ } from '../../models/product/panel/Request/ProductByUserRQ';

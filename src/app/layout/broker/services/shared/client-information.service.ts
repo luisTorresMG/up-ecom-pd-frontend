@@ -1,4 +1,4 @@
-import { Branch } from './../../models/branch/branch.model';
+import { Branch } from '../../models/branch/branch.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { AppConfig } from '../../../../app.config';
