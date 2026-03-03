@@ -3,17 +3,20 @@ import type { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { appService } from '../../../app.config';
-import 'rxjs/add/operator/catch';
+import { AppConfigService } from '~core/services/appConfigService.service';
 import { Features } from '../models/features';
-import { isNullOrUndefined } from 'util';
-import { SessionStorageService } from '../../../shared/services/storage/storage-service';
+import { isNullOrUndefined } from '~shared/helpers/null-check.helper';
+import { SessionStorageService } from '~shared/services/storage/storage-service';
 import { fromEvent, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+//new imports
+import { inject } from '@angular/core';
+
 
 
 @Injectable()
 export class AuthenticationService {
+  private readonly appConfig = inject(AppConfigService);
   public token: string;
   public firstName: string;
   public lastName: string;
@@ -23,11 +26,11 @@ export class AuthenticationService {
   public desPuntoVenta: string;
   public tipoCanal: string;
   public menu: Features[] = [];
-  private readonly urlApi = AppConfig.WSPD_API;
+  private readonly urlApi = this.appConfig.WSPD_API;
 
   constructor(
     private http: HttpClient,
-    private config: AppConfig,
+    private config: AppConfigService,
     private sessionStorageService: SessionStorageService
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -46,73 +49,75 @@ export class AuthenticationService {
         { username: username, password: password },
         { observe: 'response' }
       )
-      .map((response) => {
-        const token = response.body && response.body['token'];
-        const id = response.body && response.body['id'];
-        const firstName = response.body && response.body['firstName'];
-        const lastName = response.body && response.body['lastName'];
-        const lastName2 = response.body && response.body['lastName2'];
-        const email = response.body && response.body['email'];
-        const canal = response.body && response.body['canal'];
-        const puntoVenta = response.body && response.body['puntoVenta'];
-        const indpuntoVenta = response.body && response.body['puntoVenta'];
-        const desCanal = response.body && response.body['desCanal'];
-        const desPuntoVenta = response.body && response.body['desPuntoVenta'];
-        const tipoCanal = response.body && response.body['tipoCanal'];
-        const tdocument = response.body && response.body['tipdoc'];
-        const dni = response.body && response.body['numdoc'];
-        const sclient = response.body && response.body['codCliente'];
-        const menu = response.body && response.body['menu'];
-        const brokerId = response.body && response.body['brokerId'];
-        const intermediaId = response.body && response.body['intermediaId'];
-        const profileId = response.body && response.body['profileId'];
-        const permissionList = response.body && response.body['permissionList'];
-        const flagCambioClave = response.body && +response.body['cambioClave'];
-        const productoPerfil = response.body && response.body['productoPerfil'];
-        const promotor = response.body && response.body['promotor'];
-        const listProducts = response.body && response.body['bannerPrincipal'];
-        if (token) {
-          this.token = token;
-          this.sessionStorageService.clearStorage();
-          this.sessionStorageService.setItem('puntoVentaCliente', puntoVenta);
-          this.sessionStorageService.setItem('canalVentaCliente', canal);
+      .pipe(
+        map((response) => {
+          const token = response.body && response.body['token'];
+          const id = response.body && response.body['id'];
+          const firstName = response.body && response.body['firstName'];
+          const lastName = response.body && response.body['lastName'];
+          const lastName2 = response.body && response.body['lastName2'];
+          const email = response.body && response.body['email'];
+          const canal = response.body && response.body['canal'];
+          const puntoVenta = response.body && response.body['puntoVenta'];
+          const indpuntoVenta = response.body && response.body['puntoVenta'];
+          const desCanal = response.body && response.body['desCanal'];
+          const desPuntoVenta = response.body && response.body['desPuntoVenta'];
+          const tipoCanal = response.body && response.body['tipoCanal'];
+          const tdocument = response.body && response.body['tipdoc'];
+          const dni = response.body && response.body['numdoc'];
+          const sclient = response.body && response.body['codCliente'];
+          const menu = response.body && response.body['menu'];
+          const brokerId = response.body && response.body['brokerId'];
+          const intermediaId = response.body && response.body['intermediaId'];
+          const profileId = response.body && response.body['profileId'];
+          const permissionList = response.body && response.body['permissionList'];
+          const flagCambioClave = response.body && +response.body['cambioClave'];
+          const productoPerfil = response.body && response.body['productoPerfil'];
+          const promotor = response.body && response.body['promotor'];
+          const listProducts = response.body && response.body['bannerPrincipal'];
+          if (token) {
+            this.token = token;
+            this.sessionStorageService.clearStorage();
+            this.sessionStorageService.setItem('puntoVentaCliente', puntoVenta);
+            this.sessionStorageService.setItem('canalVentaCliente', canal);
 
-          localStorage.setItem(
-            'currentUser',
-            JSON.stringify({
-              id: id,
-              username: username,
-              token: token,
-              firstName: firstName,
-              lastName: lastName,
-              lastName2: lastName2,
-              email: email,
-              canal: canal,
-              puntoVenta: puntoVenta,
-              indpuntoVenta: indpuntoVenta,
-              desCanal: desCanal,
-              desPuntoVenta: desPuntoVenta,
-              tipoCanal: tipoCanal,
-              tdocument: tdocument,
-              dni: dni,
-              sclient: sclient,
-              menu: menu,
-              brokerId: brokerId,
-              intermediaId: intermediaId,
-              profileId: profileId,
-              flagCambioClave: flagCambioClave,
-              permissionList: permissionList,
-              productoPerfil: productoPerfil,
-              promotor: promotor,
-              listProducts: listProducts,
-              logoutEcommerce: true,
-            })
-          );
-          return true;
-        } else {
-          return false;
-        }
-      });
+            localStorage.setItem(
+              'currentUser',
+              JSON.stringify({
+                id: id,
+                username: username,
+                token: token,
+                firstName: firstName,
+                lastName: lastName,
+                lastName2: lastName2,
+                email: email,
+                canal: canal,
+                puntoVenta: puntoVenta,
+                indpuntoVenta: indpuntoVenta,
+                desCanal: desCanal,
+                desPuntoVenta: desPuntoVenta,
+                tipoCanal: tipoCanal,
+                tdocument: tdocument,
+                dni: dni,
+                sclient: sclient,
+                menu: menu,
+                brokerId: brokerId,
+                intermediaId: intermediaId,
+                profileId: profileId,
+                flagCambioClave: flagCambioClave,
+                permissionList: permissionList,
+                productoPerfil: productoPerfil,
+                promotor: promotor,
+                listProducts: listProducts,
+                logoutEcommerce: true,
+              })
+            );
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   public getToken(): string {
@@ -166,8 +171,8 @@ export class AuthenticationService {
         { NIDPROFILE: NIDPROFILE, NIDPRODUCT: NIDPRODUCT },
         { observe: 'response' }
       )
-      .map((response) => {
+      .pipe(map((response) => {
         return response.body;
-      });
+      }));
   }
 }

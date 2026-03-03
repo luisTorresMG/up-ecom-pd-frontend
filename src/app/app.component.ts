@@ -1,10 +1,4 @@
-import {
-  afterNextRender,
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  PLATFORM_ID,
+import {afterNextRender,ChangeDetectionStrategy,Component,effect,inject,PLATFORM_ID,
 } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 // import { HeaderComponent } from '~shared/components/header/header.component';
@@ -17,6 +11,11 @@ import { ToastStackComponent } from '~shared/components/toast-stack/toast-stack.
 import { AnalyticsService } from '~core/services/analytics.service';
 import { isPlatformBrowser } from '@angular/common';
 import { SeoService } from '~core/services/seo.service';
+//new imports
+import { ReactiveFormsModule } from '@angular/forms'; // Asegúrate de importar ReactiveFormsModule aquí
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; // No olvides esta importación para iniciar tu aplicación
+
+
 
 @Component({
   selector: 'app-root',
@@ -26,6 +25,7 @@ import { SeoService } from '~core/services/seo.service';
     // FooterComponent,
     CookiePopupComponent,
     // ToastStackComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

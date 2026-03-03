@@ -58,7 +58,19 @@ export class LoginComponent implements OnInit {
     private passwordService: PasswordService,
     private securityCookieService:SecurityCookieService,
     private vc: ViewContainerRef,
-  ) {}
+    private fb: FormBuilder
+  ) {
+     this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+   onSubmit() {
+    if (this.loginForm.valid) {
+      // manejo del envío del formulario
+    }
+  }
 
   ngOnInit() {
     this.initComponent();
