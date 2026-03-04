@@ -60,6 +60,7 @@
     "@typescript-eslint/types": "8.47.0",
     "@typescript-eslint/utils": "8.47.0",
     "@vitest/coverage-v8": "4.0.13",
+    "@ng-select/ng-select": "4.0.4",
     "angular-eslint": "20.6.0",
     "axe-core": "4.11.0",
     "chrome-launcher": "1.2.1",

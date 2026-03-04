@@ -25,6 +25,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NavMenuProdModule } from '../../shared/components/navmenuprod/navmenuprod.module';
 import { WelcomeComponent } from '../../shared/components/soat/generic/welcome/welcome.component';
 import { PasswordService } from './services/password/password.service';
+import { CommonComponentsModule } from '@shared/modules/common-components.module';
 @NgModule({
     imports: [
         CommonModule,
@@ -41,7 +42,7 @@ import { PasswordService } from './services/password/password.service';
         ReactiveFormsModule,
         TabsModule.forRoot(),
         NavMenuProdModule,
-        
+       CommonComponentsModule        
     ],
     exports: [FormsModule],
     declarations: [
