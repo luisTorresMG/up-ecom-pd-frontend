@@ -8,7 +8,7 @@ import { User } from '../models';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { AppConfig } from './../../../app_.config';
+import { AppConfig } from './../../../app.config';
 
 import { BaseService } from './base/base.service';
 

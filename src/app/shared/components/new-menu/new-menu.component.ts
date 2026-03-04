@@ -4,7 +4,7 @@ import { SessionStorageService } from '../../services/storage/storage-service';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { isNullOrUndefined } from '~shared/helpers/null-check.helper';
 import { environment } from './../../../../environments/environment';
-import { AppConfig } from '../../../app_.config';
+import { AppConfig } from '../../../app.config';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-menu',

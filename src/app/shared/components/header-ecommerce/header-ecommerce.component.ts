@@ -3,7 +3,7 @@ import { isNullOrUndefined } from '~shared/helpers/null-check.helper';
 import { environment } from './../../../../environments/environment';
 import { SessionStorageService } from '../../services/storage/storage-service';
 import { HeaderService } from '../header/header.service';
-import { AppConfig } from '../../../app_.config';
+import { AppConfig } from '../../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '@root/layout/soat/shared/services/session.service';
 @Component({

@@ -1,7 +1,7 @@
 import { Branch } from '../../models/branch/branch.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AppConfig } from '../../../../app_.config';
+import { AppConfig } from '../../../../app.config';
 import { Observable } from 'rxjs';
 import { DocumentType } from '../../models/shared/client-information/document-type';
 import { PersonType } from '../../models/shared/client-information/person-type';

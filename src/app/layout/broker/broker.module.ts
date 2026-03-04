@@ -15,7 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
-import { AppConfig } from '../../app_.config';
+import { AppConfig } from '../../app.config';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';

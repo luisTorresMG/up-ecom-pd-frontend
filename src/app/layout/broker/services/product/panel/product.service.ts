@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AppConfig } from '../../../../../app_.config';
+import { AppConfig } from '../../../../../app.config';
 import { ProductByUserRQ } from '../../../models/product/panel/Request/ProductByUserRQ';
 
 @Injectable({

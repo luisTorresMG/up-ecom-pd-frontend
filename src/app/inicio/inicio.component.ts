@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionStorageService } from '../shared/services/storage/storage-service';
 import { Router } from '@angular/router';
-import { AppConfig } from '../app_.config';
+import { AppConfig } from '../app.config';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

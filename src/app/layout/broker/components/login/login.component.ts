@@ -14,7 +14,7 @@ import { PasswordService } from '../../services/password/password.service';
  import { SecurityCookieService } from '../../services/cookie/SecurityCookie.service';
 //new imports
 import { AuthenticationService } from '../../services/authentication.service';
-import { AppConfig } from '../../../../app_.config';
+import { AppConfig } from '../../../../app.config';
 
 @Component({
   selector: 'app-login',

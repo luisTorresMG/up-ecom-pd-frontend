@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppConfig } from '../../../../app_.config';
+import { AppConfig } from '../../../../app.config';
 import { AuthenticationService } from '../../services/authentication.service'
 import { RecaptchaComponent } from 'ng-recaptcha';
 import { environment } from '../../../../../environments/environment';

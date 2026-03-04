@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AppConfig } from '../../../app_.config';
+import { AppConfig } from '../../../app.config';
 import 'rxjs/add/operator/catch';
 import { Features } from '../models/features';
 import { isNullOrUndefined } from '~shared/helpers/null-check.helper';

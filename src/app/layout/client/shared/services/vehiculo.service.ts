@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import { Auto } from '../models/auto.model';
 import { Observable } from 'rxjs/Observable';
-import { AppConfig } from '@root/app_.config';
+import { AppConfig } from '@root/app.config';
 import { map } from 'rxjs/operators';
 
 @Injectable()

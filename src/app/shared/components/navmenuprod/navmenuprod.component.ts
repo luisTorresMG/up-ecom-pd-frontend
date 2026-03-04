@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthenticationService } from '../../../layout/broker/services/authentication.service';
-import { AppConfig } from '../../../app_.config';
+import { AppConfig } from '../../../app.config';
 import { Observable, Subscription } from 'rxjs';
 import { String } from './contants/string';
 
