@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardL } from './guards/lote.guard';
 import { AuthGuardC } from './guards/comlot.guard';
 import { LoginComponent } from './components/login';
+import { WelcomeComponent } from '~shared/components/soat/generic/welcome/welcome.component';
 
 const broutes: Routes = [
     { path: 'login-remote', component: LoginRemoteComponent },
@@ -14,6 +15,7 @@ const broutes: Routes = [
         component: BrokerComponent,
         canActivateChild: [MenuAuthorizationGuard],
         children: [
+            { path: 'welcome', component: WelcomeComponent },
             { path: 'login', component: LoginComponent },
         ]
     },

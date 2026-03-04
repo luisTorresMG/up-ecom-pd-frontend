@@ -22,6 +22,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SidebarService } from '../../shared/services/sidebar/sidebar.service';
 import { LoginRemoteComponent } from './components/login/login-remote.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { NavMenuProdModule } from '../../shared/components/navmenuprod/navmenuprod.module';
+import { WelcomeComponent } from '../../shared/components/soat/generic/welcome/welcome.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -37,12 +39,15 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
         RecaptchaModule,
         ReactiveFormsModule,
         TabsModule.forRoot(),
+        NavMenuProdModule,
+        
     ],
     exports: [FormsModule],
     declarations: [
         BrokerComponent,
         LoginComponent,
         LoginRemoteComponent,
+        WelcomeComponent
     ], 
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     providers: [
