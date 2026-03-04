@@ -4,13 +4,15 @@ import { SessionStorageService } from '../../services/storage/storage-service';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { isNullOrUndefined } from '~shared/helpers/null-check.helper';
 import { environment } from './../../../../environments/environment';
+import { AppConfig } from '../../../app_.config';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-new-menu-landing',
+  selector: 'app-new-menu',
   standalone: false,
-  templateUrl: './new-menu-landing.component.html',
-  styleUrls: ['./new-menu-landing.component.css']
+  templateUrl: './new-menu.component.html',
+  styleUrls: ['./new-menu.component.css']
 })
-export class NewMenuLandingComponent implements OnInit {
+export class NewMenuComponent implements OnInit {
   list_link_mobile: any[] = [];
   list_link_desktop: any[] = [];
   IS_MOBILE: boolean;
@@ -30,11 +32,14 @@ export class NewMenuLandingComponent implements OnInit {
   totalSoats = 0;
   canal = '';
   base_url: SafeResourceUrl;
+  NAME_USER: string;
   private is_page_secure: string;
   @ViewChild('listMenuMobile', { static: true, read: ElementRef }) listMenuMobile?: ElementRef;
   constructor(
-    // private readonly _HeaderService: HeaderService,
+    private readonly _HeaderService: HeaderService,
     private sessionStorageService: SessionStorageService,
+    private readonly _appConfig: AppConfig,
+    private readonly _router: Router
   ) {
     this.IS_MOBILE = window.innerWidth <= 800 ? true : false;
     this.list_link_mobile = [
@@ -277,15 +282,17 @@ export class NewMenuLandingComponent implements OnInit {
       }
     ];
 
-    // this._HeaderService.totalItemsValue.subscribe(
-    //   (res: any) => {
-    //     if (this.ecommerce) {
-    //       this.ecommerceTotal = res;
-    //     }
-    //   }
-    // );
+    this._HeaderService.totalItemsValue.subscribe(
+      (res: any) => {
+        if (this.ecommerce) {
+          this.ecommerceTotal = res;
+        }
+      }
+    );
+    this.setImagebyCanal();
     this.sessionStorageService.watchStorage().subscribe((data: string) => {
       if (data) {
+        console.log('subs');
         this.setImagebyCanal();
       }
     });
@@ -307,17 +314,51 @@ export class NewMenuLandingComponent implements OnInit {
   ngOnInit(): void {
     const shoppingCart = JSON.parse(sessionStorage.getItem('shoppingCart'));
     this.ecommerce = !!shoppingCart;
-    this.show =JSON.parse(localStorage.getItem('showNewMenu'))
+    this.show = JSON.parse(localStorage.getItem('showNewMenu'));
     if (this.ecommerce) {
       this.ecommerceTotal =
         shoppingCart.soat.length +
         shoppingCart.vidaley.length +
         shoppingCart.sctr.length;
-      // this._HeaderService.setValueTotal = this.ecommerceTotal;
+      this._HeaderService.setValueTotal = this.ecommerceTotal;
     }
   }
   showHideMenuList(): void {
     this.IS_SHOW_LIST_MENU = !this.IS_SHOW_LIST_MENU;
     this.IS_SHOW_LIST_MENU ? this.listMenuMobile.nativeElement.hidden = false : this.listMenuMobile.nativeElement.hidden = true;
+  }
+  get currentUser(): any {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user) {
+      return `${user.firstName} ${user.lastName}`;
+    }
+    return ``;
+  }
+  get channelDescription(): string {
+    const channelSimulador = JSON.parse(localStorage.getItem(AppConfig.PROFILE_ADMIN_STORE));
+    const channel = JSON.parse(localStorage.getItem('currentUser')).desCanal;
+    let name: string;
+    if (channelSimulador !== null) {
+      name = channelSimulador.sdescript.toLowerCase();
+    } else {
+      if (channel) {
+        return channel.toLowerCase();
+      }
+      return ``;
+    }
+    return name;
+  }
+  get isExtranet(): boolean {
+    // tslint:disable-next-line:max-line-length
+    return (window.location.toString().indexOf('extranet') !== -1 || window.location.toString().indexOf('backoffice') !== -1) && window.location.toString().indexOf('extranet/login') == -1;
+  }
+  goToShop(): void {
+    this._appConfig.pixelEvent(
+      'virtualEvent',
+      'Shop',
+      'Ir a la tienda',
+      '(not available)'
+    );
+    this._router.navigate(['/shop/checkout']);
   }
 }

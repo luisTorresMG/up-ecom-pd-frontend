@@ -5,6 +5,7 @@ import {
 
 @Component({
   selector: 'app-broker',
+  standalone: false,
   templateUrl: './broker.component.html',
   styleUrls: ['./broker.component.css']
 })

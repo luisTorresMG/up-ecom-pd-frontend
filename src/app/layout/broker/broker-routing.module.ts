@@ -1,6 +1,11 @@
 import { Component, NgModule } from '@angular/core';
 import { LoginRemoteComponent } from './components/login/login-remote.component';
 import { BrokerComponent } from './broker.component';
+import { MenuAuthorizationGuard } from './guards/menu-authorization.guard';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardL } from './guards/lote.guard';
+import { AuthGuardC } from './guards/comlot.guard';
+import { LoginComponent } from './components/login';
 
 const broutes: Routes = [
     { path: 'login-remote', component: LoginRemoteComponent },
@@ -8,7 +13,9 @@ const broutes: Routes = [
         path: '',
         component: BrokerComponent,
         canActivateChild: [MenuAuthorizationGuard],
-
+        children: [
+            { path: 'login', component: LoginComponent },
+        ]
     },
 ]
 
