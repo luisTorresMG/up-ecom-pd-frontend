@@ -12,7 +12,10 @@ import {
 export class BrokerComponent implements OnInit {
   mostrarSidebar: boolean;
 
-  constructor() { }
+  constructor() {
+    console.log('at ctor BrokerComponent')
+
+   }
 
   ngOnInit() {
   }

@@ -7,16 +7,18 @@ import { AuthGuardL } from './guards/lote.guard';
 import { AuthGuardC } from './guards/comlot.guard';
 import { LoginComponent } from './components/login';
 import { WelcomeComponent } from '~shared/components/soat/generic/welcome/welcome.component';
+import { ComplexInnerSubscriber } from 'rxjs/internal/innerSubscribe';
 
 const broutes: Routes = [
     { path: 'login-remote', component: LoginRemoteComponent },
     {
         path: '',
         component: BrokerComponent,
-        canActivateChild: [MenuAuthorizationGuard],
+        // canActivateChild: [MenuAuthorizationGuard],
         children: [
             { path: 'welcome', component: WelcomeComponent },
             { path: 'login', component: LoginComponent },
+            { path: '**', redirectTo: 'login' },
         ]
     },
 ]
@@ -28,4 +30,8 @@ const broutes: Routes = [
     providers: [AuthGuardL, AuthGuardC],
 })
 export class BrokerRoutingModule {
+    constructor(){
+        debugger;
+        console.log('into broker routing moudle')
+    }
 }

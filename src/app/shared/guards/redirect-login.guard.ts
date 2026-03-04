@@ -6,7 +6,9 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class RedirectLoginGuard implements CanActivate {
   constructor(private readonly router: Router) {
+    console.log('redirect login guards - before route of extranet login')
   }
+  
 
   canActivate(): boolean {
     const path = window.location.pathname.split('/').pop();
@@ -22,7 +24,7 @@ export class RedirectLoginGuard implements CanActivate {
     if (Object.keys(session).length) {
       return true;
     }
-
+    console.log('redirect login guards - before route of extranet login')
     this.router.navigate(['/extranet/login']);
     return false;
   }

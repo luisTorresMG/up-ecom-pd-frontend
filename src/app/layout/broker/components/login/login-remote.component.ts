@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { appConfig } from '../../../../app.config';
+import { AppConfig } from '../../../../app_.config';
 import { AppConfigService } from '~core/services/appConfigService.service';
 import { AuthenticationService } from '../../services/authentication.service'
 import { RecaptchaComponent } from 'ng-recaptcha';
@@ -22,10 +22,9 @@ import { inject } from '@angular/core';
   selector: 'app-login-remote'
 })
 export class LoginRemoteComponent implements OnInit {
-    private readonly appConfig = inject(AppConfigService);
   productByUser = new ProductByUserRQ();
   productList: any = [];
-  profile_admin = this.appConfig.PROFILE_ADMIN_SOAT;
+  profile_admin = AppConfig.PROFILE_ADMIN_SOAT;
 
   constructor(private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -118,13 +117,13 @@ export class LoginRemoteComponent implements OnInit {
 
   navigateHome() {
     this.sidebarService.close();
-    localStorage.setItem(this.appConfig.PROFILE_ADMIN_STORE, null);
+    localStorage.setItem(AppConfig.PROFILE_ADMIN_STORE, null);
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (this.profile_admin === user.profileId) {
-      localStorage.setItem(this.appConfig.PROFILE_ADMIN_GUID, '1');
+      localStorage.setItem(AppConfig.PROFILE_ADMIN_GUID, '1');
       this.router.navigate(['extranet/login-profile'], { skipLocationChange: true });
     } else {
-      localStorage.setItem(this.appConfig.PROFILE_ADMIN_GUID, '0');
+      localStorage.setItem(AppConfig.PROFILE_ADMIN_GUID, '0');
       this.router.navigate(['extranet/home'], { skipLocationChange: true });
     }
   }

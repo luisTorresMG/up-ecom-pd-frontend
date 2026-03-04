@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import type { Observable } from 'rxjs';
-import { AuthenticationService } from '..';
+import { AppConfig } from '../../../../app_.config';
+import { Observable } from 'rxjs/Observable';
+import { AuthenticationService } from '../../services';
 import { map } from 'rxjs/operators';
-import { inject } from '@angular/core';
-import { AppConfigService } from '~core/services/appConfigService.service';
-//new imports
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-
 
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -17,13 +11,12 @@ const httpOption = {
 
 @Injectable()
 export class PasswordService {
-  private readonly appConfig = inject(AppConfigService);
 
-  private wspdApi: string = this.appConfig.WSPD_API;
+  private wspdApi: string = AppConfig.WSPD_API;
 
   constructor(
     private http: HttpClient,
-    private config: AppConfigService,
+    private config: AppConfig,
     private authenticationService: AuthenticationService
   ) {}
 
@@ -34,8 +27,7 @@ export class PasswordService {
   verify(data: any): Observable<any> {
     const url = this.config.apiUrl + '/password/verify';
 
-    return this.http.post(url, data, { headers: this.mHeaders })
-    .pipe(map(
+    return this.http.post(url, data, { headers: this.mHeaders }).map(
       (response) => {
         return response;
       },
@@ -47,8 +39,7 @@ export class PasswordService {
           message: 'Tuvimos un inconveniente realizando tu petición',
         };
       }
-    ));
-    
+    );
   }
 
   sendRetrievePassword(model: any): Observable<any> {
@@ -61,7 +52,7 @@ export class PasswordService {
         },
         { headers: this.mHeaders }
       )
-      .pipe(map(
+      .map(
         (response) => {
           // console.log('success: ', response);
 
@@ -75,8 +66,7 @@ export class PasswordService {
             message: 'Tuvimos un inconveniente realizando tu petición',
           };
         }
-      ));
-      
+      );
   }
 
   tiposDocumentos(): Observable<any> {
@@ -86,7 +76,7 @@ export class PasswordService {
         {},
         { headers: this.mHeaders }
       )
-      .pipe(map(
+      .map(
         (response) => {
           // console.log('success: ', response);
 
@@ -100,7 +90,7 @@ export class PasswordService {
             message: 'Tuvimos un inconveniente realizando tu petición',
           };
         }
-      ));      
+      );
   }
 
   getTokenInfo(token: string): Observable<any> {
@@ -110,7 +100,7 @@ export class PasswordService {
         { idretrieve: token },
         { headers: this.mHeaders }
       )
-      .pipe(map(
+      .map(
         (response) => {
           // console.log('success: ', response);
 
@@ -124,8 +114,7 @@ export class PasswordService {
             message: 'Tuvimos un inconveniente realizando tu petición',
           };
         }
-      ));
-      
+      );
   }
 
   renewPassword(model: any): Observable<any> {
@@ -133,7 +122,7 @@ export class PasswordService {
       .post(this.config.apiUrl + '/password/renew_pass', model, {
         headers: this.mHeaders,
       })
-      .pipe(map(
+      .map(
         (response) => {
           // console.log('success: ', response);
 
@@ -147,8 +136,7 @@ export class PasswordService {
             message: 'Tuvimos un inconveniente realizando tu petición',
           };
         }
-      ));
-      
+      );
   }
 
   changePassword(): Observable<any> {
@@ -163,7 +151,7 @@ export class PasswordService {
         },
         { headers: this.mHeaders }
       )
-      .pipe(map(
+      .map(
         (response) => {
           // console.log('success: ', response);
           this.authenticationService.removeSession();
@@ -177,7 +165,7 @@ export class PasswordService {
             message: 'Tuvimos un inconveniente realizando tu petición',
           };
         }
-      ));
+      );
   }
 
   getToken(): Observable<string> {

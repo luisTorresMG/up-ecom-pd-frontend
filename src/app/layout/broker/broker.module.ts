@@ -24,6 +24,7 @@ import { LoginRemoteComponent } from './components/login/login-remote.component'
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NavMenuProdModule } from '../../shared/components/navmenuprod/navmenuprod.module';
 import { WelcomeComponent } from '../../shared/components/soat/generic/welcome/welcome.component';
+import { PasswordService } from './services/password/password.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -58,6 +59,7 @@ import { WelcomeComponent } from '../../shared/components/soat/generic/welcome/w
         DecimalPipe,
         SidebarService,
         SessionStorageService,
+        PasswordService,
     ],
 })
 export class BrokerModule { }

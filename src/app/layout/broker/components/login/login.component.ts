@@ -17,6 +17,8 @@ import { inject } from '@angular/core';
 import { AppConfigService } from '~core/services/appConfigService.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
+import { AppConfig } from '../../../../app_.config';
+
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -24,7 +26,6 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  private readonly appConfig = inject(AppConfigService);
   productByUser = new ProductByUserRQ();
   model: any = {};
   loading = false;
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
   message: string = '';
   showOtpAuthAws: boolean = false;
 
-  siteKey = this.appConfig.CAPTCHA_KEY;
+  siteKey = AppConfig.CAPTCHA_KEY;
   bCaptchaValid = false;
   loginForm: FormGroup;
   productList: any = [];
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
   username: ElementRef;
   @ViewChild('modalUpdatePassword', { static: true }) modalUpdatePassword;
 
-  profile_admin = this.appConfig.PROFILE_ADMIN_SOAT;
+  profile_admin = AppConfig.PROFILE_ADMIN_SOAT;
 
   constructor(
     private sidebarService: SidebarService,
@@ -55,12 +56,11 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sessionStorageService: SessionStorageService,
     private spinner: NgxSpinnerService,
-    // private appConfig: AppConfig,
+    private appConfig: AppConfig,
     private passwordService: PasswordService,
     private securityCookieService:SecurityCookieService,
     private vc: ViewContainerRef,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.initComponent();
@@ -272,14 +272,14 @@ export class LoginComponent implements OnInit {
     const mainProduct = user.productoPerfil.find((x) => x.idProducto === 1);
 
     if (mainProduct && _.includes(mainProduct.idPerfil)) {
-      localStorage.setItem(this.appConfig.PROFILE_ADMIN_GUID, '1');
+      localStorage.setItem(AppConfig.PROFILE_ADMIN_GUID, '1');
     } else {
-      localStorage.setItem(this.appConfig.PROFILE_ADMIN_GUID, '0');
+      localStorage.setItem(AppConfig.PROFILE_ADMIN_GUID, '0');
     }
   }
   navigateHome(res: any) {
     this.sidebarService.close();
-    localStorage.setItem(this.appConfig.PROFILE_ADMIN_STORE, null);
+    localStorage.setItem(AppConfig.PROFILE_ADMIN_STORE, null);
     const user = JSON.parse(localStorage.getItem('currentUser'));
     const mainProduct = user.productoPerfil.filter(
       (x) => x.idPerfil === user.profileId
