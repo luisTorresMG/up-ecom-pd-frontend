@@ -14,7 +14,7 @@ const broutes: Routes = [
     {
         path: '',
         component: BrokerComponent,
-        // canActivateChild: [MenuAuthorizationGuard],
+        canActivateChild: [MenuAuthorizationGuard],
         children: [
             { path: 'welcome', component: WelcomeComponent },
             { path: 'login', component: LoginComponent },
