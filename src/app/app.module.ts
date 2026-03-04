@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VersionCheckService } from '~shared/services/check-service/version-check.service';
+import { AppConfig } from './app_.config';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { VersionCheckService } from '~shared/services/check-service/version-chec
   ],
   providers: [
     VersionCheckService,
+    AppConfig,
   ],
   bootstrap: [AppComponent],
 })
