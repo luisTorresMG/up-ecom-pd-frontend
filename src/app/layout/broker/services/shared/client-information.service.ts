@@ -1,7 +1,7 @@
 import { Branch } from '../../models/branch/branch.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { AppConfig } from '../../../../app.config';
+import { AppConfig } from '../../../../app_.config';
 import { Observable } from 'rxjs';
 import { DocumentType } from '../../models/shared/client-information/document-type';
 import { PersonType } from '../../models/shared/client-information/person-type';
@@ -37,17 +37,13 @@ import { DocumentTypeSnt } from '../../models/shared/document-type-snt';
 import { ProfileEsp } from '../../models/shared/client-information/Profile-Esp';
 import { ActivityDesgravamen } from '../../models/shared/client-information/activity-desgravamen';
 import { CodesList } from '../../models/shared/client-information/codes-type';
-//new imports
-import { inject } from '@angular/core';
-import { AppConfigService } from '~core/services/appConfigService.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ClientInformationService {
-    private readonly appConfig = inject(AppConfigService);
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private Url = this.appConfig.URL_API_SCTR;
+    private Url = AppConfig.URL_API_SCTR;
 
     constructor(private http: HttpClient) { }
 

@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppConfig } from '../../../../app_.config';
-import { AppConfigService } from '~core/services/appConfigService.service';
 import { AuthenticationService } from '../../services/authentication.service'
 import { RecaptchaComponent } from 'ng-recaptcha';
 import { environment } from '../../../../../environments/environment';
@@ -12,10 +11,6 @@ import { switchMap } from 'rxjs/operators';
 import { sortArray } from '../../../../shared/helpers/utils';
 import { ProductByUserRQ } from '../../models/product/panel/Request/ProductByUserRQ';
 import { ProductService } from '../../services/product/panel/product.service';
-
-//new imports
-import { inject } from '@angular/core';
-
 @Component({
   standalone: false,
   template: '',
@@ -127,5 +122,4 @@ export class LoginRemoteComponent implements OnInit {
       this.router.navigate(['extranet/home'], { skipLocationChange: true });
     }
   }
-
 }

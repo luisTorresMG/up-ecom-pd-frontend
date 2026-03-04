@@ -6,6 +6,7 @@ import { InicioComponent } from './inicio.component';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { NewMenuLandingComponent } from '~shared/components/new-menu-landing/new-menu-landing.component';
 import { FooterComponent } from '~shared/components/footer/footer.component';
+import { AppConfig } from '../app_.config';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { FooterComponent } from '~shared/components/footer/footer.component';
     // CommonComponentsModule
   ],
   declarations: [InicioComponent, NewMenuLandingComponent, FooterComponent],
-  providers: [SessionStorageService],
+  providers: [SessionStorageService,AppConfig],
 })
 export class InicioModule {}
 //for review

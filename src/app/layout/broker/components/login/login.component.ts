@@ -13,10 +13,7 @@ import { SessionStorageService } from '~shared/services/storage/storage-service'
 import { PasswordService } from '../../services/password/password.service';
  import { SecurityCookieService } from '../../services/cookie/SecurityCookie.service';
 //new imports
-import { inject } from '@angular/core';
-import { AppConfigService } from '~core/services/appConfigService.service';
 import { AuthenticationService } from '../../services/authentication.service';
-
 import { AppConfig } from '../../../../app_.config';
 
 @Component({

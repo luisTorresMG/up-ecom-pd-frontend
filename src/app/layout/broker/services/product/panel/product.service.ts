@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AppConfig } from '../../../../../app_.config';
 import { ProductByUserRQ } from '../../../models/product/panel/Request/ProductByUserRQ';
-//new imports
-import { inject } from '@angular/core';
-import { AppConfigService } from '~core/services/appConfigService.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-  private readonly appConfig = inject(AppConfigService);
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private Url = this.appConfig.URL_API_SCTR;
-    private apiOtp = this.appConfig.URL_API_OTPAWS;
+    private Url = AppConfig.URL_API_SCTR;
+    private apiOtp = AppConfig.URL_API_OTPAWS;
     constructor(private http: HttpClient) { }
 
     public getProductByUser(data: ProductByUserRQ): Observable<any> {

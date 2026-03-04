@@ -1,20 +1,16 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { AppConfig } from "../../../../app_.config";
 import { Observable } from "rxjs";
-//new imports
-import { inject } from '@angular/core';
-import { AppConfigService } from '~core/services/appConfigService.service';
-
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class SecurityCookieService {
-    private readonly appConfig = inject(AppConfigService);
 
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private Url = this.appConfig.URL_API_SCTR;
+    private Url = AppConfig.URL_API_SCTR;
 
     constructor(private http: HttpClient) { }
 
