@@ -29,9 +29,5 @@ const broutes: Routes = [
     exports: [RouterModule],
     providers: [AuthGuardL, AuthGuardC],
 })
-export class BrokerRoutingModule {
-    constructor(){
-        debugger;
-        console.log('into broker routing moudle')
-    }
+export class BrokerRoutingModule {   
 }

@@ -20,8 +20,6 @@ module.exports = {
         'core',
         'auth',
         'home',
-        'pokemon',
-        'pokedex',
       ],
     ],
     'subject-case': [2, 'always', 'lower-case'],
