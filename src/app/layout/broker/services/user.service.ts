@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 import { AuthenticationService } from './authentication.service';
 import { User } from '../models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -21,9 +22,20 @@ export class UserService  extends BaseService {
             super();
     }
     getUsers(): Observable<User[]> {
-        // Agregar encabezado de autorización con token jwt
-        const  httpOption = {headers: new HttpHeaders ({'Authorization': 'Bearer ' + this.authenticationService.token})};
-        return this.http.get<User[]>(this.config.apiUrl + '/user', httpOption)
-                                                            .pipe(catchError(this.handleError));
-    }
+    const httpOption = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.authenticationService.token }) };
+    return this.http.get<User[]>(this.config.apiUrl + '/user', httpOption)
+                    .pipe(
+                        map(response => {
+                            // Lógica de mapeo si es necesario
+                            return response;
+                        }),
+                        catchError(this.handleError)  // Aquí usamos catchError desde 'rxjs/operators'
+                    );
+}
+    // getUsers(): Observable<User[]> {
+    //     // Agregar encabezado de autorización con token jwt
+    //     const  httpOption = {headers: new HttpHeaders ({'Authorization': 'Bearer ' + this.authenticationService.token})};
+    //     return this.http.get<User[]>(this.config.apiUrl + '/user', httpOption)
+    //                                                         .pipe(catchError(this.handleError));
+    // }
 }

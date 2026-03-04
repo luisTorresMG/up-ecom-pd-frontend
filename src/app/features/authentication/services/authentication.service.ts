@@ -1,6 +1,7 @@
 import { inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, type Observable } from 'rxjs';
+import { type Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LOCAL_STORAGE } from '~core/providers/local-storage';
 import { LanguageService } from '~core/services/language.service';
 import { clearCache } from '~core/interceptors/caching.interceptor';

@@ -37,7 +37,8 @@
     "ng-recaptcha": "^13.2.1",
     "ngx-bootstrap": "^21.0.1",
     "ngx-spinner": "^21.0.0",
-    "rxjs": "7.8.2",
+    "rxjs": "^6.5.4",
+    "rxjs-compat": "^6.0.0-rc.0",
     "tslib": "2.8.1"
   },
   "devDependencies": {

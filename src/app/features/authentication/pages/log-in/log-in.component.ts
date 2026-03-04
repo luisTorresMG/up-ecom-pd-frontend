@@ -10,7 +10,8 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { RouterModule } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, EMPTY, finalize } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import {  EMPTY } from 'rxjs';
 import { emailValidator } from '~shared/validators/email.validator';
 import { AUTH_URLS, USER_URLS } from '~core/constants/urls.constants';
 import { passwordValidator } from '~shared/validators/password.validator';

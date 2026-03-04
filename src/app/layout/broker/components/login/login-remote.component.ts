@@ -17,6 +17,7 @@ import { ProductService } from '../../services/product/panel/product.service';
 import { inject } from '@angular/core';
 
 @Component({
+  standalone: false,
   template: '',
   selector: 'app-login-remote'
 })

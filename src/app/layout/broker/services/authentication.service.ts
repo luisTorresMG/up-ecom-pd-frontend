@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import type { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfigService } from '~core/services/appConfigService.service';
 import { Features } from '../models/features';

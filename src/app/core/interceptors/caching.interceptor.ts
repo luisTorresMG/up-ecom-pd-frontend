@@ -1,7 +1,8 @@
 import type { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { HttpContextToken, HttpResponse } from '@angular/common/http';
 import type { Observable } from 'rxjs';
-import { of, tap } from 'rxjs';
+import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';  // Asegúrate de importar 'tap' desde 'rxjs/operators'
 
 export const CACHING_ENABLED = new HttpContextToken<boolean>(() => false);
 
