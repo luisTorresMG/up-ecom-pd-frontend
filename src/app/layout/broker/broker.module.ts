@@ -29,6 +29,7 @@ import { CommonComponentsModule } from '@shared/modules/common-components.module
 
 import { BrokerHttpInterceptor } from './guards/broker-http-interceptor';
 import { AuthInterceptor } from '../../shared/interceptors/auth.interceptor';
+import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { AuthInterceptor } from '../../shared/interceptors/auth.interceptor';
         BrokerComponent,
         LoginComponent,
         LoginRemoteComponent,
-        WelcomeComponent
+        WelcomeComponent,
+        PanelComponent,
     ], 
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     providers: [

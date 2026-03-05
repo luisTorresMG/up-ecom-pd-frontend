@@ -8,6 +8,7 @@ import { AuthGuardC } from './guards/comlot.guard';
 import { LoginComponent } from './components/login';
 import { WelcomeComponent } from '~shared/components/soat/generic/welcome/welcome.component';
 import { ComplexInnerSubscriber } from 'rxjs/internal/innerSubscribe';
+import { PanelComponent } from './components/panel/panel.component';
 
 const broutes: Routes = [
     { path: 'login-remote', component: LoginRemoteComponent },
@@ -18,6 +19,8 @@ const broutes: Routes = [
         children: [
             { path: 'welcome', component: WelcomeComponent },
             { path: 'login', component: LoginComponent },
+            //sección vida ley
+            { path: 'panel-vidaley/:key', component: PanelComponent },
             { path: '**', redirectTo: 'login' },
         ]
     },
