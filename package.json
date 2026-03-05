@@ -86,7 +86,11 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.47.0",
     "vitest": "4.0.13",
-    "wait-on": "9.0.3"
+    "wait-on": "9.0.3",
+    "file-saver": "^2.0.5",
+    "exceljs": "^4.3.0",
+    "xlsx": "^0.12.12",
+    "crypto-js": "^4.1.1"
   },
   "engines": {
     "node": ">=22.19 <24",

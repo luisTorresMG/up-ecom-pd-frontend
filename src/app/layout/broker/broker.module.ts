@@ -26,6 +26,10 @@ import { NavMenuProdModule } from '../../shared/components/navmenuprod/navmenupr
 import { WelcomeComponent } from '../../shared/components/soat/generic/welcome/welcome.component';
 import { PasswordService } from './services/password/password.service';
 import { CommonComponentsModule } from '@shared/modules/common-components.module';
+
+import { BrokerHttpInterceptor } from './guards/broker-http-interceptor';
+import { AuthInterceptor } from '../../shared/interceptors/auth.interceptor';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -61,6 +65,16 @@ import { CommonComponentsModule } from '@shared/modules/common-components.module
         SidebarService,
         SessionStorageService,
         PasswordService,
+         {
+            provide: HTTP_INTERCEPTORS,
+            useClass: BrokerHttpInterceptor,
+            multi: true,
+        },
+         {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }
     ],
 })
 export class BrokerModule { }
