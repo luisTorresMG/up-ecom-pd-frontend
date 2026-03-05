@@ -29,6 +29,10 @@
             "i18nMissingTranslation": "error",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
+              "src/favicon-protecta.ico",
+              "src/web.config",
+              "src/manifest.json",
               {
                 "glob": "**/*",
                 "input": "public",
