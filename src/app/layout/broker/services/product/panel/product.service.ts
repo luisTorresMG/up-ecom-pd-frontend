@@ -28,32 +28,12 @@ export class ProductService {
     }
 
     public getValidateUser (data: any): Observable<any> {
-      debugger
         const url = `${this.apiOtp}/security/globalAuthentication/v0/authentication`;
         console.log(data)
 
-        // const headersType = new HttpHeaders({
-        //   'validation-type': '10'
-        // });
-
-         const headersType = new HttpHeaders({
-        'accept': 'application/json, text/plain, */*',
-        'accept-language': 'es-ES,es;q=0.9',
-        'authorization': 'Bearer', // Aquí deberías agregar tu token
-        'content-type': 'application/json',
-        'origin': 'http://localhost:4400',
-        'priority': 'u=1, i',
-        'referer': 'http://localhost:4400/',
-        'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-        'validation-type': '10' // Este es un encabezado personalizado
-    });
-
+        const headersType = new HttpHeaders({
+          'validation-type': '10'
+        });
 
         if (data.authentication.userData?.processId) {
           return this.http.post(url, data, { headers: headersType });
